@@ -1,14 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Recommend System</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
-  <script type="text/javascript" src= "{{ url_for('static', filename='util.js') }}"></script>
+    <meta charset="utf-8">
+    <title>Recommend System</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='util.js') }}"></script>
 
-  <script type="text/javascript">
+   <script type="text/javascript">
     {% if login %}
       window.onload=sendRestfulGet("/guessyoulike");
     {% endif %}
@@ -19,31 +21,54 @@
       }
     }
   </script>
+
 </head>
-<body>
-<div class="serachHead"  style="text-align: center;padding-top: 20px;padding-bottom: 30px">
-  <h3 align="center" style="font-size:50px">Recommend System</h3>
-  <input type="search" class="searchInput" id="searchHead" style="width:600px; height:40px; font-size:22px" placeholder="">
-  <a href="" id="linksearch">
-    <button onclick="replaceUrl()" style="height:40px; width:100px; text-align:center; font-size:20px; background-color:rgb(222,122,122); color:rgb(255,255,255); border-radius: 15px"> Search </button>
-  </a>
-</div>
-{% if not login %}
-<div id="login">
-  <p><a href="/login">登录</a></p>
-</div>
-{% else %}
-<div id="login">
-  <p><a>User Name : {{ userid }}</a></p>
-  <p><a href="/logout">Log out</a></p>
-</div>
-{% endif %}
+<body background="{{ url_for('static', filename='5.jpg')}}" style=" background-repeat:no-repeat ;background-size:100% 100%;background-attachment: fixed;">
 
-<ul class="nav nav-tabs" id="myTabs" style="position:absolute; left:30px; top: 10px">
-  <p>猜你喜欢</p>
-</ul>
+    <main>
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/" class="nav-link px-3 link-secondary">Recommend System</a></li>
+                    </ul>
 
-<p id="showpicture"></p>
+                    <form class="col-12 col-lg-auto mb-5 mb-lg-0 me-lg-5" method="POST" action="/search">
+                        <input type="search" id="searchHead" class="form-control" placeholder="Search..."
+                               aria-label="Search" name="key">
+                    </form>
+
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if not login %}
+                                <img src="{{ url_for('static', filename='login.jpg') }}" width="48" height="48"
+                                     class="rounded-circle">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='user.jpg') }}" width="48" height="48"
+                                     class="rounded-circle">
+                            {% endif %}
+
+                        </a>
+                        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                            {% if not login %}
+                                <li><a class="dropdown-item" href="/login">登录</a></li>
+                            {% else %}
+
+                                <li><p class="dropdown-item">欢迎用户：{{ userid }}</p></li>
+                                <li><a class="dropdown-item" href="/logout">登出</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </main>
+
+<div id="waterfall">
+    <!-- 在这里方商品条目详情信息-->
+    <p id="showpicture"></p>
+</div>
 
 </body>
 </html>

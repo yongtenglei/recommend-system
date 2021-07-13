@@ -1,61 +1,42 @@
-body{
-  margin: 0;
-  padding: 0;
-  background: #487eb0;
+html,
+body {
+  height: 100%;
 }
-.sign-div{
-  width: 300px;
-  padding: 20px;
-  text-align: center;
-  background: url(bg02.jpg);
-  position:absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  overflow: hidden;
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #fe5040;
+  background: url(http://inews.gtimg.com/newsapp_match/0/2977087875/0.jpg);
+  background-position: 50% 99.9%;
+  background-size: 100% auto;
 }
-.sign-div h1{
-  margin-top: 100px;
-  color: #fff;
-  font-size: 40px;
-}
-.sign-div input{
-  display: block;
+
+.form-signin {
   width: 100%;
-  padding: 0 16px;
-  height: 44px;
-  text-align: center;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  font-family: "montserrat",sans-serif;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
 }
-.sign-text{
-  margin:4px;
-  background: rgba(255,255,255,5);
-  border-radius: 6px;
+
+.form-signin .checkbox {
+  font-weight: 400;
 }
-.sign-btn{
-  margin-top: 50px;
-  margin-bottom: 20px;
-  background: #487eb0;
-  color: #fff;
-  border-radius: 44px;
-  cursor: pointer;
-  transition: 0.8s;
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
 }
-.sign-btn:hover{
-  transform:scale(0.96);
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
-.sign-div a{
-  text-decoration: none;
-  color: #fff;
-  font-family: "montserrat", sans-serif;
-  font-size: 14px;
-  padding: 10px;
-  transition: 0.8s;
-  display: block;
-}
-.sign-div a:hover{
-  background: rgba(0,0,0,.3);
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

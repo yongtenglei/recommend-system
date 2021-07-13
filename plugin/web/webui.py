@@ -7,7 +7,6 @@ import logging
 
 from plugin import REVIEWER, MySQL, Redis, item_config, user_behavior_config, hot_item_config, user_config
 
-
 logging.getLogger("werkzeug").setLevel(logging.DEBUG)  # 不要删除
 from flask_restful import Api
 
@@ -49,13 +48,21 @@ def search(key):
         login, userid = True, session['userid']
     return render_template('search.html', query_key=key, login=login, userid=userid)
 
+@app.route("/search", methods=['POST',])
+def search_post():
+    key = "test"
+    login, userid = False, ''
+    # if 'userid' in session:
+    login, userid = True, session['userid']
+    if request.method == 'POST':
+        key = request.form['key']
+        return render_template('search.html', query_key=key, login=login, userid=userid)
+    return render_template('search.html', query_key=key, login=login, userid=userid)
 
 @app.route("/item/<category>/<itemid>")
 def itemInfo(category, itemid):
-    login, userid = False, ''
     if 'userid' in session:
-        login = True
-        userid = session['userid']
+        login, userid = True, session['userid']
         saveUserBehavior(user_behavior_sql, userid, itemid, category, REVIEWER)
 
     saveHotItem(hot_item_handle, category, itemid)
@@ -75,25 +82,21 @@ def login():
             log.info("create User success")
             return render_template('index.html', name="index", login=True, userid=userid)
 
-    return render_template('login.html')
+    return render_template('login-1.html')
 
 
 @app.route("/logout")
 def logout():
-    if 'userid' in session:
-        userid = session['userid']
-        if userid in hot_item_handle.connection.keys():
-            hot_item_handle.set(userid, '')
     session.pop('userid', None)
     return redirect(url_for('root'))
 
 from plugin.web.search import QuerySearch
-from plugin.web.recommend import GuessYouLike
 from plugin.web.recommend import Recommend
-api = Api(app)
-api.add_resource(QuerySearch, '/querysearch/<keyword>')
+from plugin.web.recommend import GuessYouLike
+
 api.add_resource(GuessYouLike, '/guessyoulike')
 api.add_resource(Recommend, '/recommend/<itemid>')
+api.add_resource(QuerySearch, '/querysearch/<keyword>')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8002)
+    app.run(host='0.0.0.0', port=8001)
