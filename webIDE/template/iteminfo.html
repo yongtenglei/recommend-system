@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ item["title"] }}</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='iteminfo.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
+  <script type="text/javascript" src= "{{ url_for('static', filename='util.js') }}"></script>
+  <script type="text/javascript">
+  {% if login %}
+    window.onload=sendRecommend('{{ item["item id"] }}');
+  {% endif %}
+  </script>
+</head>
+
+<body>
+<div class='row'>
+  <div class='left'>
+    <img src="{{ item['imgurl'] }}">
+  </div>
+  <div class='right'>
+    <p class='title'>{{ item['title'] }} </p>
+    <p class='category'>Category: {{ item['main categories'] }}</p>
+    <p class='price'>Price: {{ item['price'] }}</p>
+    <p class='desc'>---------------------------<br><br>Description:<br><br> &ensp;&ensp; {{ item['description'] }} </p>
+  </div>
+</div>
+
+<div class="Item Recommend">
+  <h3 align="left" style="margin-top:200px">Inspired by your views</h3>
+  <p id="showpicture"></p>
+</div>
+
+<div id="HomePage" style="position:absolute; left:50px;top:10px;padding-top: 19px;padding-bottom: 30px; margin-left:25px; margin-top:4px;text-decoration: none;">
+  <p> 
+  <font size="6" face="Times">
+  <a id="Home" href='/' style="text-decoration: none;">Cambricon</a>
+  </font>
+  </p>
+</div>
+{% if not login %}
+<div id="login" style= "postiton:absolute;right:50px;top:10px;">
+  <p><a href="/login">登录</a></p>
+</div>
+{% else %}
+<div id="login" style= "postiton:absolute;right:50px;top:10px;">
+  <p><a>User Name : {{ userid }}</a></p>
+  <p><a href="/logout">Log out</a></p>
+</div>
+{% endif %}
+</body>
+</html>

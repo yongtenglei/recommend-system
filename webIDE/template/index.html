@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Recommend System</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
+  <script type="text/javascript" src= "{{ url_for('static', filename='util.js') }}"></script>
+
+  <script type="text/javascript">
+    {% if login %}
+      window.onload=sendRestfulGet("/guessyoulike");
+    {% endif %}
+    function replaceUrl() {
+      key = document.getElementById("searchHead").value
+      if (key) {
+        document.getElementById("linksearch").setAttribute("href", "/search/" + key);
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="serachHead"  style="text-align: center;padding-top: 20px;padding-bottom: 30px">
+  <h3 align="center" style="font-size:50px">Recommend System</h3>
+  <input type="search" class="searchInput" id="searchHead" style="width:600px; height:40px; font-size:22px" placeholder="">
+  <a href="" id="linksearch">
+    <button onclick="replaceUrl()" style="height:40px; width:100px; text-align:center; font-size:20px; background-color:rgb(222,122,122); color:rgb(255,255,255); border-radius: 15px"> Search </button>
+  </a>
+</div>
+{% if not login %}
+<div id="login">
+  <p><a href="/login">登录</a></p>
+</div>
+{% else %}
+<div id="login">
+  <p><a>User Name : {{ userid }}</a></p>
+  <p><a href="/logout">Log out</a></p>
+</div>
+{% endif %}
+
+<ul class="nav nav-tabs" id="myTabs" style="position:absolute; left:30px; top: 10px">
+  <p>猜你喜欢</p>
+</ul>
+
+<p id="showpicture"></p>
+
+</body>
+</html>

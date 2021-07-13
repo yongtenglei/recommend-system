@@ -1,0 +1,75 @@
+{
+  "user_database": {
+    "user": "root",
+    "password": "hello123",
+    "port": 3306,
+    "host": "10.9.203.40",
+    "database": "user",
+    "charset": "utf8"
+  },
+  "item_database": {
+    "user": "root",
+    "password": "hello123",
+    "port": 3306,
+    "host": "10.9.203.40",
+    "database": "item_categories",
+    "charset": "utf8"
+  },
+  "reviewer_database": {
+    "user": "root",
+    "password": "hello123",
+    "port": 3306,
+    "host": "10.9.203.40",
+    "database": "reviewer",
+    "charset": "utf8"
+  },
+  "recall_database": {
+    "host": "10.9.203.40",
+    "port": 6379,
+    "database": "0"
+  },
+  "hot_item_database": {
+    "host": "10.9.203.40",
+    "port": 6379,
+    "database": "2"
+  },
+  "user_behavior_database": {
+    "user": "root",
+    "password": "hello123",
+    "port": 3306,
+    "host": "10.9.203.40",
+    "database": "user_behavior",
+    "charset": "utf8"
+  },
+
+
+  "ranking" : {
+    "offline_model" : "/opt/shared/recommend/Wide.cambricon",
+    "uid_path" : "/opt/shared/recommend/uid_voc.json",
+    "mid_path" : "/opt/shared/recommend/mid_voc.json",
+    "cat_path" : "/opt/shared/recommend/cat_voc.json",
+    "uid_embedding_path" : "/opt/shared/recommend/uid_embeddings.json",
+    "mid_embedding_path" : "/opt/shared/recommend/mid_embeddings.json",
+    "cat_embedding_path" : "/opt/shared/recommend/cat_embeddings.json",
+    "fun_name" : "subnet0",
+    "device_id" : 0
+  },
+
+  "rankingTF" : {
+    "model_name" : "WIDE",
+    "model_path" : "/opt/shared/recommend/Wide.pb",
+    "uid_path" : "/opt/shared/recommend/uid_voc.json",
+    "mid_path" : "/opt/shared/recommend/mid_voc.json",
+    "cat_path" : "/opt/shared/recommend/cat_voc.json",
+    "device_id" : 0
+  },
+
+  "ncf" : {
+    "model_path" : "/opt/shared/recommend/ncf/ncf.pb",
+    "rating_path" : "/opt/shared/recommend/ncf/ratings.dat",
+    "user_dict_path" : "/opt/shared/recommend/ncf/ranking_user.json",
+    "item_dict_path" : "/opt/shared/recommend/ncf/ranking_item.json",
+    "item_categoriey_dict_" : "/opt/shared/recommend/item_category_dict.json",
+    "device_id" : 0
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ query_key }}_Search Result</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+  <script type="text/javascript" src= "{{ url_for('static', filename='util.js') }}"></script>
+  <script type="text/javascript">
+    function sendSearch(search_val) {
+      result = sendRestfulGet("/querysearch/" + search_val)
+    }
+
+    function replaceUrl() {
+      key = document.getElementById("searchHead").value
+      if (key) {
+        document.getElementById("linksearch").setAttribute("href", "/search/" + key);
+      }
+    }
+    {% if login %}
+      window.onload = sendSearch("{{ query_key }}");
+    {% endif %}
+  </script>
+</head>
+<body>
+<p> 
+  <font size="6" face="Times">
+  <a id="Home" href='/' style="text-align: left;padding-top: 19px;padding-bottom: 30px; margin-left:25px; margin-top:4px; float:left;text-decoration: none; text-decoration: none;">Cambricon</a>
+  </font>
+</p>
+<div class="serachHead" style="text-align: left;padding-top: 20px;padding-bottom: 30px;margin-left: 200px;">
+  <input type="search" class="searchInput" id="searchHead" style="width:600px; height:40px; font-size:22px" placeholder="{{ query_key }}">
+  <a href="" id="linksearch">
+    <button onclick="replaceUrl()" style="height:40px; width:100px; text-align:center; font-size:20px; background-color:rgb(222,122,122); color:rgb(255,255,255); border-radius: 15px"> Search </button>
+  </a>
+</div>
+
+<p id="showpicture"></p>
+
+{% if not login %}
+<div id="login" style= "postiton:absolute;right:50px;top:10px;">
+  <p><a href="/login">登录</a></p>
+</div>
+{% else %}
+<div id="login" style= "postiton:absolute;right:50px;top:10px;">
+  <p><a>User Name : {{ userid }}</a></p>
+  <p><a href="/logout">Log out</a></p>
+</div>
+{% endif %}
+
+</body>
+</html>

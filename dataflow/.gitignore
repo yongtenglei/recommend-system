@@ -1,0 +1,8 @@
+/build
+/bin
+/lib/libdataflow.so
+*.egg-info/
+MANIFEST
+dist/
+eggs/
+.eggs/

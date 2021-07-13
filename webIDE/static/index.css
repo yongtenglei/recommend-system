@@ -1,0 +1,52 @@
+#myTabs{
+	font-size: 18px;
+	font-weight: bold;
+}
+#myTabs li{
+	text-decoration: none;
+	list-style: none; 			
+  display: inline;
+}
+#myTabs li a{
+	text-decoration: none;
+	margin:0px;
+	height:40px; 
+	line-height:40px; 
+	text-align:center;
+}
+#row {
+  text-align:center;
+  vertical-align:middle;
+  margin-left: 200px;
+  margin-top: 20px;
+  margin: 100 auto;
+  border: 2px;
+}
+#col {
+  border: 2px;
+  height : 660px;
+  width : 360px;
+  float : left;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding-top:2px;
+  background-color:#FFFFF0;
+}
+#context_image {
+  margin-top: 40px;
+}
+#context_name p {
+  width : 20em;
+  height : 5em;
+  max-height:5em;
+  text-overflow: ellipsis;
+}
+#context_price p {
+  width : 20em;
+  text-overflow: ellipsis;
+}
+#login {
+  position: absolute;
+  right:50px;
+  top:10px;
+}
